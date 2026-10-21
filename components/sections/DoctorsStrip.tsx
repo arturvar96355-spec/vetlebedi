@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 
 const quickSpecs = ['Терапия', 'Хирургия', 'Кардиология', 'Неврология', 'Реанимация', 'Дерматология', 'Офтальмология', 'Экзотические животные'].filter((s) => allSpecialties.includes(s));
 
-export function DoctorCard({ doc, i }: { doc: (typeof doctors)[number]; i: number }) {
+export function DoctorCard({ doc, i, fluid }: { doc: (typeof doctors)[number]; i: number; fluid?: boolean }) {
   const { openBooking } = useUI();
   const cl = doc.clinics.map((c) => clinics.find((x) => x.id === c)?.short).filter(Boolean);
   return (
@@ -24,7 +24,7 @@ export function DoctorCard({ doc, i }: { doc: (typeof doctors)[number]; i: numbe
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.94 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="group flex w-[280px] shrink-0 snap-start flex-col overflow-hidden rounded-[28px] border border-ink/10 bg-milk-2 shadow-[0_10px_28px_-18px_rgb(16_48_46/.35)] transition-shadow duration-500 hover:shadow-[0_18px_36px_-18px_rgb(16_48_46/.45)] sm:w-[300px]"
+      className={cn('group flex flex-col overflow-hidden rounded-[28px] border border-ink/10 bg-milk-2 shadow-[0_10px_28px_-18px_rgb(16_48_46/.35)] transition-shadow duration-500 hover:shadow-[0_18px_36px_-18px_rgb(16_48_46/.45)]', fluid ? 'w-full' : 'w-[280px] shrink-0 snap-start sm:w-[300px]')}
     >
       <div className="relative">
         <Monogram name={doc.name} index={i} className="aspect-[4/3.2]" />

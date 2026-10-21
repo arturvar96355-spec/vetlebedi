@@ -7,6 +7,7 @@ import { BottomBar } from '@/components/layout/BottomBar';
 import { Footer } from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://example.com'),
   title: 'Лебеди — ветеринарная клиника в Москве, круглосуточно',
   description:
     'Ветеринарные клиники «Лебеди» в Раменках, Олимпийской деревне и Видном. С 2006 года. Круглосуточный приём, лапароскопическая хирургия, реанимация, стационар, зоотакси.',

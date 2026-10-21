@@ -17,7 +17,7 @@ export function Footer() {
           <p className="mt-5 max-w-sm text-moon/70">Ветеринарные центры малотравматичной хирургии и комплексного восстановления. С {site.since} года.</p>
           <a href={site.phoneHref} className="tnum mt-8 block font-display text-4xl hover:text-aqua">{site.phone}</a>
           <a href={`mailto:${site.email}`} className="mt-1 block text-moon/80 hover:text-aqua">{site.email}</a>
-          <p className="mt-4 text-sm text-moon/60">
+          <p className="mt-4 text-sm text-moon/75">
             Контроль качества: <a href={`mailto:${site.qualityEmail}`} className="underline underline-offset-4 hover:text-aqua">{site.qualityEmail}</a>
             <br />Письма уходят владельцу клиник и врачебной комиссии.
           </p>
@@ -25,9 +25,9 @@ export function Footer() {
         <div className="grid gap-8 sm:grid-cols-3 md:col-span-8">
           {clinics.map((c) => (
             <div key={c.id}>
-              <h3 className="font-display text-2xl">{c.name}</h3>
+              <h2 className="font-display text-2xl">{c.name}</h2>
               <p className="mt-2 text-[15px] text-moon/75">{c.address}</p>
-              <p className="mt-1 text-[15px] text-moon/60">{c.hoursLabel}</p>
+              <p className="mt-1 text-[15px] text-moon/75">{c.hoursLabel}</p>
               <a href={c.routeUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-[15px] underline underline-offset-4 hover:text-aqua">Маршрут</a>
             </div>
           ))}
@@ -43,7 +43,7 @@ export function Footer() {
           </nav>
         </div>
       </div>
-      <div className="relative mx-auto mt-16 max-w-[1280px] border-t border-moon/10 px-5 pt-6 text-[13px] leading-relaxed text-moon/50 md:px-12">
+      <div className="relative mx-auto mt-16 max-w-[1280px] border-t border-moon/10 px-5 pt-6 text-[13px] leading-relaxed text-moon/70 md:px-12">
         <p>
           Концепт сайта, подготовлен для ООО КВМ «Лебеди» студией {site.conceptStudio}. Не является официальным сайтом компании. Фото и часть сведений будут заменены данными клиента.
         </p>

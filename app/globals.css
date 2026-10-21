@@ -126,8 +126,8 @@ html[data-sky='night'] .sky-day { opacity: 0; }
 
 /* Заглушки для данных клиента */
 .ph {
-  display: inline-block; padding: 1px 8px; border: 1.5px dashed color-mix(in srgb, currentColor 45%, transparent);
-  border-radius: 8px; color: color-mix(in srgb, currentColor 65%, transparent);
+  display: inline-block; padding: 1px 8px; border: 1.5px dashed color-mix(in srgb, currentColor 55%, transparent);
+  border-radius: 8px; color: color-mix(in srgb, currentColor 85%, transparent);
   font-size: .9em; line-height: 1.5; background: color-mix(in srgb, currentColor 5%, transparent);
 }
 
@@ -143,4 +143,14 @@ html[data-sky='night'] .sky-day { opacity: 0; }
   .swan .eye { animation: none; opacity: 1; }
   .swan-breathe, .water-flow, .star, .marquee { animation: none !important; }
   .sky-day, .sky-night { transition: none; }
+}
+
+/* Появление первого экрана без JS: контент виден сразу после загрузки CSS */
+.rise { opacity: 0; transform: translateY(var(--ry, 24px)); animation: rise .9s var(--ease-out-soft) forwards; animation-delay: var(--rd, 0s); }
+@keyframes rise { to { opacity: 1; transform: none; } }
+.word-rise { display: inline-block; transform: translateY(112%); animation: wordrise .95s var(--ease-out-soft) forwards; animation-delay: var(--wd, 0s); }
+@keyframes wordrise { to { transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .rise { opacity: 1; transform: none; animation: none; }
+  .word-rise { transform: none; animation: none; }
 }

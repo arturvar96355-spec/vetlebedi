@@ -29,7 +29,7 @@ export function Directions() {
             >
               <div className="flex items-start justify-between">
                 <it.icon size={30} strokeWidth={1.25} className="text-lake transition-colors duration-500 group-hover:text-reed-pale" />
-                <span className="tnum font-display text-[22px] opacity-30">{String(i + 1).padStart(2, '0')}</span>
+                <span className="tnum font-display text-[22px] text-lake">{String(i + 1).padStart(2, '0')}</span>
               </div>
               <div>
                 <h3 className="text-[22px] leading-[1.05] sm:text-[27px]">{it.title}</h3>

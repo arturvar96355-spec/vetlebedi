@@ -14,7 +14,7 @@ function Card({ q }: { q: (typeof quotes)[number] }) {
   return (
     <figure className="flex w-[320px] shrink-0 flex-col justify-between rounded-[28px] border border-moon/10 bg-night-2 p-6 md:w-[380px]">
       <div>
-        <div className="flex gap-0.5 text-[#e0a526]" aria-label="5 из 5">{Array.from({ length: 5 }).map((_, i) => <Star key={i} size={14} fill="currentColor" strokeWidth={0} />)}</div>
+        <div role="img" className="flex gap-0.5 text-[#e0a526]" aria-label="5 из 5">{Array.from({ length: 5 }).map((_, i) => <Star key={i} size={14} fill="currentColor" strokeWidth={0} />)}</div>
         <blockquote className="mt-4 font-display text-[26px] leading-[1.15] text-moon">«{q.text}»</blockquote>
       </div>
       <figcaption className="mt-6 text-[13px] text-moon/60">{q.author} · {clinicName(q.clinic)} · отзыв на Яндекс Картах</figcaption>
@@ -31,11 +31,11 @@ export function Reviews() {
           <div className="flex flex-wrap items-end gap-x-10 gap-y-6">
             <div>
               <div className="tnum font-display text-[clamp(72px,9vw,128px)] leading-[0.85]"><Counter to={5} decimals={1} /></div>
-              <div className="mt-6 flex gap-0.5 text-[#e0a526]">{Array.from({ length: 5 }).map((_, i) => <Star key={i} size={18} fill="currentColor" strokeWidth={0} />)}</div>
+              <div role="img" aria-label="5 из 5" className="mt-6 flex gap-0.5 text-[#e0a526]">{Array.from({ length: 5 }).map((_, i) => <Star key={i} size={18} fill="currentColor" strokeWidth={0} />)}</div>
             </div>
             <ul className="grid gap-1.5 text-[14.5px] text-moon/75">
               {clinics.map((c) => (
-                <li key={c.id} className="flex items-center gap-3"><span className="tnum w-8 font-semibold text-moon">{c.rating.toFixed(1).replace('.', ',')}</span> {c.short} <span className="tnum text-moon/50">{c.ratings.toLocaleString('ru-RU')} оценок</span></li>
+                <li key={c.id} className="flex items-center gap-3"><span className="tnum w-8 font-semibold text-moon">{c.rating.toFixed(1).replace('.', ',')}</span> {c.short} <span className="tnum text-moon/70">{c.ratings.toLocaleString('ru-RU')} оценок</span></li>
               ))}
             </ul>
           </div>

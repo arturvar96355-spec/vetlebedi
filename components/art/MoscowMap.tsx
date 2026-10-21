@@ -13,7 +13,7 @@ export function MoscowMap({ active, onPick }: { active: string | null; onPick: (
   const reduce = useReducedMotion();
   const on = inView || reduce;
   return (
-    <svg ref={ref} viewBox="0 0 100 100" className="h-full w-full" role="img" aria-label="Схема расположения клиник «Лебеди»: Раменки, Олимпийская деревня и Видное">
+    <svg ref={ref} viewBox="0 0 100 100" className="h-full w-full" role="group" aria-label="Схема расположения клиник «Лебеди»: Раменки, Олимпийская деревня и Видное">
       <defs>
         <radialGradient id="mapglow" cx="50%" cy="45%" r="60%"><stop offset="0" stopColor="#cfe0d7" stopOpacity=".7" /><stop offset="1" stopColor="#cfe0d7" stopOpacity="0" /></radialGradient>
       </defs>

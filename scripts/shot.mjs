@@ -22,7 +22,7 @@ const srv = createServer((req, res) => {
 const port = srv.address().port;
 mkdirSync('shots', { recursive: true });
 const b = await chromium.launch({ executablePath: process.env.CHROME_PATH ?? '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
-const ctx = await b.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: w < 600 ? 2 : 1, isMobile: w < 600, hasTouch: w < 600 });
+const ctx = await b.newContext({ reducedMotion: args.includes('--reduced') ? 'reduce' : 'no-preference', viewport: { width: w, height: h }, deviceScaleFactor: w < 600 ? 2 : 1, isMobile: w < 600, hasTouch: w < 600 });
 if (sky) await ctx.addInitScript((s) => { try { localStorage.setItem('sky', s); } catch {} }, sky);
 const p = await ctx.newPage();
 p.on('pageerror', (e) => console.log('PAGEERROR', e.message));

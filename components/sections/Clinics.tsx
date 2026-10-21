@@ -40,7 +40,7 @@ export function Clinics() {
                       <div>
                         <h3 className="text-[34px]">{c.name}</h3>
                         <p className="mt-1.5 text-[16px] text-ink-soft">{c.address}</p>
-                        {c.note && <p className="text-[14px] text-ink-soft/80">{c.note}</p>}
+                        {c.note && <p className="text-[14px] text-ink-soft">{c.note}</p>}
                       </div>
                       <span className={cn('inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[13px] font-medium', isOpen === false ? 'bg-sand text-ink-soft' : 'bg-reed-pale text-lake-deep')}>
                         <span className={cn('h-2 w-2 rounded-full', isOpen === false ? 'bg-ink-soft/50' : 'bg-[#2fa86a]')} />
@@ -63,7 +63,7 @@ export function Clinics() {
         <Reveal className="lg:sticky lg:top-24 lg:self-start">
           <div className="relative aspect-square overflow-hidden rounded-[36px] border border-ink/10 bg-milk-2 shadow-[var(--shadow-soft)]">
             <MoscowMap active={active} onPick={setActive} />
-            <p className="absolute bottom-4 left-5 text-[12px] text-ink-soft/70">Схема, не в масштабе</p>
+            <p className="absolute bottom-4 left-5 text-[12px] text-ink-soft">Схема, не в масштабе</p>
           </div>
         </Reveal>
       </div>

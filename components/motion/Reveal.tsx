@@ -60,14 +60,18 @@ export function SplitHeading({
         const clean = w.replace(/\*/g, '');
         return (
           <span key={i} aria-hidden className="inline-block overflow-hidden pb-[0.12em] align-top">
-            <motion.span
-              className={`inline-block ${em ? 'italic' : ''}`}
-              initial={reduce ? false : { y: '112%' }}
-              animate={{ y: shown ? 0 : '112%' }}
-              transition={{ duration: 0.95, ease: EASE, delay: delay + i * 0.055 }}
-            >
-              {clean}
-            </motion.span>
+            {immediate ? (
+              <span className={`word-rise ${em ? 'italic' : ''}`} style={{ ['--wd' as string]: `${delay + i * 0.055}s` }}>{clean}</span>
+            ) : (
+              <motion.span
+                className={`inline-block ${em ? 'italic' : ''}`}
+                initial={reduce ? false : { y: '112%' }}
+                animate={{ y: shown ? 0 : '112%' }}
+                transition={{ duration: 0.95, ease: EASE, delay: delay + i * 0.055 }}
+              >
+                {clean}
+              </motion.span>
+            )}
             {i < words.length - 1 ? '\u00A0' : ''}
           </span>
         );

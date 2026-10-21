@@ -63,7 +63,7 @@ export function Header() {
                 href={n.href}
                 className={cn(
                   'group relative whitespace-nowrap rounded-full px-3.5 py-2.5 text-[15px] transition-colors',
-                  n.tone === 'alert' ? 'text-alert hover:bg-alert/10' : 'hover:bg-current/10',
+                  n.tone === 'alert' ? (solid && dark ? 'text-[#ff8b73] hover:bg-alert/10' : 'text-[#a93625] hover:bg-alert/10') : 'hover:bg-current/10',
                 )}
               >
                 {n.tone === 'alert' && <span className="mr-2 inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-alert align-middle" />}

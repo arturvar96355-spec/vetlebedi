@@ -17,10 +17,20 @@ export function Counter({
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.6 });
   const reduce = useReducedMotion();
-  const [v, setV] = useState(reduce ? to : 0);
+  // SSR и первый экран отдают итоговое значение (для LCP); счёт с нуля — только у блоков ниже сгиба
+  const [v, setV] = useState(to);
+  const armed = useRef(false);
 
   useEffect(() => {
-    if (!inView || reduce) return;
+    if (reduce || !ref.current) return;
+    if (ref.current.getBoundingClientRect().top > window.innerHeight * 0.95) {
+      armed.current = true;
+      setV(0);
+    }
+  }, [reduce]);
+
+  useEffect(() => {
+    if (!inView || reduce || !armed.current) return;
     const c = animate(0, to, { duration, ease: [0.22, 1, 0.36, 1], onUpdate: setV });
     return () => c.stop();
   }, [inView, reduce, to, duration]);

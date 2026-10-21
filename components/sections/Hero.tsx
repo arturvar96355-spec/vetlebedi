@@ -2,7 +2,8 @@ import { site } from '@/content/site';
 import { Swan } from '@/components/art/Swan';
 import { Sky } from '@/components/art/Sky';
 import { WaterLines } from '@/components/art/Water';
-import { SplitHeading, Reveal } from '@/components/motion/Reveal';
+import { SplitHeading } from '@/components/motion/Reveal';
+import { Rise } from '@/components/motion/Rise';
 import { HeroActions } from './HeroActions';
 import { LiveStatus } from '@/components/widgets/LiveStatus';
 import { Situation } from '@/components/widgets/Situation';
@@ -22,7 +23,7 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1280px] flex-col justify-between px-5 pb-8 pt-[100px] md:px-12 md:pt-[112px]">
         <div className="max-w-[860px]">
-          <Reveal y={12} delay={0.1}>
+          <Rise y={12} delay={0.1}>
             <p className="relative mb-6 grid text-[12.5px] uppercase tracking-[0.16em] text-[color:var(--sky-soft)]">
               <span className="sky-day col-start-1 row-start-1 flex items-center gap-3">
                 <LiveStatus suffix="· Москва и Видное" />
@@ -32,7 +33,7 @@ export function Hero() {
                 Дежурная смена принимает прямо сейчас
               </span>
             </p>
-          </Reveal>
+          </Rise>
           <SplitHeading
             as="h1"
             immediate
@@ -40,14 +41,14 @@ export function Hero() {
             text="Ветеринарная клиника, где *Вам* всё объясняют"
             className="font-display text-[clamp(44px,6.3vw,96px)] font-medium leading-[0.98] tracking-[-0.025em]"
           />
-          <Reveal delay={0.7} y={20}>
+          <Rise delay={0.7} y={20}>
             <p className="mt-7 max-w-[560px] text-[clamp(17px,1.5vw,20px)] leading-relaxed text-[color:var(--sky-soft)]">
               С&nbsp;{site.since} года. Круглосуточно. Три клиники: Раменки, Олимпийская&nbsp;деревня и&nbsp;Видное.
             </p>
-          </Reveal>
-          <Reveal delay={0.85} y={20}>
+          </Rise>
+          <Rise delay={0.85} y={20}>
             <HeroActions />
-          </Reveal>
+          </Rise>
         </div>
 
         {/* Мобильная версия: лебедь на воде отдельной полосой */}
@@ -56,9 +57,9 @@ export function Hero() {
           <WaterLines className="absolute inset-x-[-20px] bottom-0 text-reed" lines={3} />
         </div>
 
-        <Reveal delay={1.1} y={28} className="relative mt-4 md:mt-10">
+        <Rise delay={1.1} y={28} className="relative mt-4 md:mt-10">
           <Situation />
-        </Reveal>
+        </Rise>
       </div>
     </section>
   );

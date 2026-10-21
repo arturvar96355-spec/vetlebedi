@@ -2,8 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { DogFigure } from '@/components/art/DogFigure';
 import { Button } from '@/components/ui/Button';
 import { Reveal } from '@/components/motion/Reveal';
@@ -23,22 +21,27 @@ export function SurgeryScene() {
   const { openBooking } = useUI();
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
     const el = root.current;
     if (!el) return;
+    let cleanup: (() => void) | undefined;
+    let dead = false;
+    (async () => {
+    const [{ gsap }, { ScrollTrigger }] = await Promise.all([import('gsap'), import('gsap/ScrollTrigger')]);
+    if (dead) return;
+    gsap.registerPlugin(ScrollTrigger);
     const mm = gsap.matchMedia();
     mm.add('(min-width: 768px) and (prefers-reduced-motion: no-preference)', () => {
       const q = (s: string) => el.querySelectorAll(s);
       const tl = gsap.timeline({
         defaults: { ease: 'power2.inOut' },
+        onUpdate() { const t = this.time(); setStep(t >= 3 ? 3 : t >= 2 ? 2 : t >= 1 ? 1 : 0); },
         scrollTrigger: {
           trigger: el.querySelector('.pin'),
           start: 'top top',
           end: '+=260%',
           pin: true,
           scrub: 0.6,
-          onUpdate: (self) => { const t = self.animation?.time() ?? 0; setStep(t >= 3 ? 3 : t >= 2 ? 2 : t >= 1 ? 1 : 0); },
-        },
+                  },
       });
       gsap.set(q('.inc'), { strokeDasharray: '1', strokeDashoffset: 1, opacity: 1 });
       gsap.set(q('.port'), { scale: 0, opacity: 0 });
@@ -73,7 +76,12 @@ export function SurgeryScene() {
         .to({}, { duration: 0.4 });
       return () => tl.scrollTrigger?.kill();
     });
-    return () => mm.revert();
+    cleanup = () => mm.revert();
+    })();
+    return () => {
+      dead = true;
+      cleanup?.();
+    };
   }, []);
 
   return (
@@ -115,7 +123,7 @@ export function SurgeryScene() {
       <div className="mx-auto max-w-[1280px] px-5 py-24 md:motion-safe:hidden">
         <p className="mb-5 flex items-center gap-3 text-[12.5px] uppercase tracking-[0.16em] text-aqua"><span className="h-px w-8 bg-current" /> Лапароскопия</p>
         <h2 className="font-display text-[44px] font-medium leading-[1]">Меньше разрезов. <em>Больше</em> спокойствия</h2>
-        <ol className="mt-12 grid gap-5">
+        <ol className="mt-12 grid gap-5 md:grid-cols-2">
           {surgerySteps.map((s, i) => (
             <Reveal as="li" key={i}>
               <div className="rounded-[28px] border border-moon/10 bg-night-2 p-5">
