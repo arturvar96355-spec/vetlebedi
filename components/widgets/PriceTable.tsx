@@ -42,7 +42,7 @@ export function PriceTable() {
           <label className="relative">
             <span className="sr-only">Поиск по прайсу</span>
             <Search size={18} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-ink-soft" />
-            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Найти услугу: рентген, УЗИ, стерилизация…" className="min-h-12 w-full rounded-full border border-ink/15 bg-milk-2 pl-12 pr-4 text-[16px] focus:border-lake focus:outline-none focus:ring-2 focus:ring-lake/30" />
+            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Найти услугу" className="min-h-12 w-full rounded-full border border-ink/15 bg-milk-2 pl-12 pr-4 text-[16px] focus:border-lake focus:outline-none focus:ring-2 focus:ring-lake/30" />
           </label>
           <div role="radiogroup" aria-label="Филиал" className="no-scrollbar flex gap-2 overflow-x-auto">
             {branches.map((b) => (

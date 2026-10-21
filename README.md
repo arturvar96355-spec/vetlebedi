@@ -20,6 +20,7 @@ node scripts/shot.mjs / name --night --w=390 --h=844   # скриншот соб
 | `node scripts/serve.mjs 4173` | Сервер для `out/` с gzip |
 | `node scripts/shot.mjs / имя [--night\|--day] [--w= --h=] [--scroll=] [--click=текст] [--reduced]` | Скриншот в `shots/` |
 | `node scripts/tour.mjs / префикс [--w= --h=]` | Прокрутка страницы экран за экраном |
+| `node scripts/autosky.mjs` | Проверка авто-темы день/ночь по московскому времени (границы 9:00 и 21:00, чужие часовые пояса) |
 | `node scripts/a11y.mjs` | Аудит axe-core по всем страницам, день и ночь |
 | `npm run placeholders` | Список всех видимых заглушек для данных клиента |
 
