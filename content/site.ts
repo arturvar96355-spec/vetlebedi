@@ -15,7 +15,8 @@ export const site = {
   rating: { value: 5.0, count: 1758, reviews: 1097, totalCount: 4407 },
   mapsReviewsUrl: 'https://yandex.com/maps/org/lebedi/1352687994/reviews/',
   conceptStudio: 'Kovagor',
-  nightShift: { from: 21, to: 9 },
+  // Тёмная тема: с 23:00 до 05:00 по Москве
+  nightShift: { from: 23, to: 5 },
 } as const;
 
 export const nav = [

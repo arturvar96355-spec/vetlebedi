@@ -14,7 +14,7 @@ const srv = createServer((req, res) => {
 }).listen(0);
 const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
 // московское время (UTC+3) → ожидаемая тема. Часовой пояс браузера нарочно чужой.
-const cases = [['2026-10-22T00:30:00+03:00', 'night'], ['2026-10-22T08:59:00+03:00', 'night'], ['2026-10-22T09:00:00+03:00', 'day'], ['2026-10-22T14:00:00+03:00', 'day'], ['2026-10-22T20:59:00+03:00', 'day'], ['2026-10-22T21:00:00+03:00', 'night'], ['2026-10-22T03:00:00+03:00', 'night']];
+const cases = [['2026-10-22T23:00:00+03:00', 'night'], ['2026-10-22T22:59:00+03:00', 'day'], ['2026-10-22T00:30:00+03:00', 'night'], ['2026-10-22T04:59:00+03:00', 'night'], ['2026-10-22T05:00:00+03:00', 'day'], ['2026-10-22T14:00:00+03:00', 'day'], ['2026-10-22T09:30:00+03:00', 'day']];
 let bad = 0;
 for (const tz of ['America/Los_Angeles', 'Asia/Tokyo']) for (const [iso, want] of cases) {
   const ctx = await b.newContext({ timezoneId: tz, viewport: { width: 1000, height: 700 } });

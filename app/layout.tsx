@@ -28,7 +28,7 @@ export const viewport: Viewport = {
   themeColor: '#F6F2EA',
 };
 
-const skyScript = `(function(){try{var d=document.documentElement;var h=Number(new Intl.DateTimeFormat('ru-RU',{timeZone:'Europe/Moscow',hour:'2-digit',hour12:false}).format(new Date()))%24;var auto=(h>=21||h<9)?'night':'day';var p=null;try{p=localStorage.getItem('sky')}catch(e){}d.dataset.auto=auto;d.dataset.sky=(p==='day'||p==='night')?p:auto}catch(e){document.documentElement.dataset.sky='day'}})()`;
+const skyScript = `(function(){try{var d=document.documentElement;var h=Number(new Intl.DateTimeFormat('ru-RU',{timeZone:'Europe/Moscow',hour:'2-digit',hour12:false}).format(new Date()))%24;var auto=(h>=23||h<5)?'night':'day';var p=null;try{p=localStorage.getItem('sky')}catch(e){}d.dataset.auto=auto;d.dataset.sky=(p==='day'||p==='night')?p:auto}catch(e){document.documentElement.dataset.sky='day'}})()`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

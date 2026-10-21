@@ -15,9 +15,9 @@ function Van() {
       <path d="M160 118 v34 M143 135 h34" strokeWidth="2.2" />
       <path d="M26 196 H478" opacity="0" />
       {[[120, 204], [388, 204]].map(([x, y]) => (
-        <g key={x}><circle cx={x} cy={y} r="30" fill="#f6f2ea" /><circle cx={x} cy={y} r="12" /></g>
+        <g key={x}><circle cx={x} cy={y} r="30" fill="var(--color-milk)" /><circle cx={x} cy={y} r="12" /></g>
       ))}
-      <path d="M0 238 C80 228 140 246 220 238 S380 228 520 238" stroke="#8fb3a5" strokeWidth="1.2" />
+      <path d="M0 238 C80 228 140 246 220 238 S380 228 520 238" stroke="var(--color-reed)" strokeWidth="1.2" />
     </svg>
   );
 }

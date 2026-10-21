@@ -4,9 +4,9 @@ import { cn } from '@/lib/utils';
 const palette = [
   'bg-reed-pale text-lake-deep',
   'bg-sand text-ink',
-  'bg-lake text-milk',
+  'bg-[color-mix(in_srgb,var(--color-lake)_72%,var(--color-milk))] text-milk',
   'bg-night-2 text-moon',
-  'bg-[#dfe9e2] text-lake',
+  'bg-reed-pale text-lake',
 ];
 
 export function Monogram({ name, index = 0, className }: { name: string; index?: number; className?: string }) {

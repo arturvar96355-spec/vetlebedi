@@ -25,10 +25,10 @@ export function Hero() {
         <div className="max-w-[860px]">
           <Rise y={12} delay={0.1}>
             <p className="relative mb-6 grid text-[12.5px] uppercase tracking-[0.16em] text-[color:var(--sky-soft)]">
-              <span className="sky-day col-start-1 row-start-1 flex items-center gap-3">
+              <span className="duty-off col-start-1 row-start-1 flex items-center gap-3">
                 <LiveStatus suffix="· Москва и Видное" />
               </span>
-              <span className="sky-night col-start-1 row-start-1 flex items-center gap-3 text-aqua">
+              <span className="duty-on col-start-1 row-start-1 items-center gap-3 text-aqua">
                 <span className="relative flex h-2 w-2"><span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-aqua opacity-60" /><span className="relative h-2 w-2 rounded-full bg-aqua" /></span>
                 Дежурная смена принимает прямо сейчас
               </span>

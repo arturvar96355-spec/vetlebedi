@@ -94,9 +94,35 @@ h1, h2, h3 {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ───── Небо день/ночь (data-sky на <html>) ───── */
+/* ───── Ночная тема всего сайта (data-sky на <html>) ───── */
+html[data-sky='night'] {
+  color-scheme: dark;
+  --color-milk: #0b1f1e;
+  --color-milk-2: #112c29;
+  --color-ink: #ece6da;
+  --color-ink-soft: #aebfb8;
+  --color-lake: #3fbfb2;
+  --color-lake-deep: #6bd9cd;
+  --color-reed: #5f8f82;
+  --color-reed-pale: #17403c;
+  --color-sand: #17332f;
+  --color-night: #123330;
+  --color-night-2: #1a423e;
+  --alert-wash: #2b1a17;
+  --shadow-soft: 0 24px 60px -24px rgb(0 0 0 / 0.55);
+  --shadow-lift: 0 30px 70px -26px rgb(0 0 0 / 0.7);
+}
+html { --alert-wash: #f3e4dc; }
+body { transition: background-color .8s var(--ease-out-soft), color .8s var(--ease-out-soft); }
+
+/* Фраза про дежурную смену — только когда она идёт на самом деле (а не при ручном переключении темы) */
+.duty-on { display: none; }
+html[data-auto='night'] .duty-on { display: flex; }
+html[data-auto='night'] .duty-off { display: none; }
+
+/* ───── Небо день/ночь ───── */
 html { --sky-bg: #f6f2ea; --sky-ink: #10302e; --sky-soft: #3c5a57; --sky-line: #1f5a55; }
-html[data-sky='night'] { --sky-bg: #0e2624; --sky-ink: #ede7dc; --sky-soft: #b9c9c1; --sky-line: #cfe0d7; }
+html[data-sky='night'] { --sky-bg: #0b1f1e; --sky-ink: #ede7dc; --sky-soft: #b9c9c1; --sky-line: #cfe0d7; }
 
 .sky-day, .sky-night { transition: opacity 1.2s var(--ease-out-soft); }
 .sky-night { opacity: 0; }

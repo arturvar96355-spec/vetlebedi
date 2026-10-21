@@ -17,7 +17,7 @@ function Card({ q }: { q: (typeof quotes)[number] }) {
         <div role="img" className="flex gap-0.5 text-[#e0a526]" aria-label="5 из 5">{Array.from({ length: 5 }).map((_, i) => <Star key={i} size={14} fill="currentColor" strokeWidth={0} />)}</div>
         <blockquote className="mt-4 font-display text-[26px] leading-[1.15] text-moon">«{q.text}»</blockquote>
       </div>
-      <figcaption className="mt-6 text-[13px] text-moon/60">{q.author} · {clinicName(q.clinic)} · отзыв на Яндекс Картах</figcaption>
+      <figcaption className="mt-6 text-[13px] text-moon/75">{q.author} · {clinicName(q.clinic)} · отзыв на Яндекс Картах</figcaption>
     </figure>
   );
 }
