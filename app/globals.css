@@ -70,7 +70,7 @@ h1, h2, h3 {
   text-wrap: balance;
 }
 
-.tnum { font-variant-numeric: tabular-nums; }
+.tnum { font-variant-numeric: lining-nums tabular-nums; font-feature-settings: 'lnum' 1, 'tnum' 1; }
 
 ::selection { background: var(--color-reed-pale); color: var(--color-ink); }
 

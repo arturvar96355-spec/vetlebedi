@@ -17,11 +17,20 @@ export function Header() {
   const path = usePathname();
   const home = path === '/';
   const [scrolled, setScrolled] = useState(false);
+  const [dark, setDark] = useState(false);
   const [menu, setMenu] = useState(false);
   const { openBooking } = useUI();
 
   useEffect(() => {
-    const f = () => setScrolled(window.scrollY > 24);
+    let raf = 0;
+    const f = () => {
+      setScrolled(window.scrollY > 24);
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const el = document.elementsFromPoint(window.innerWidth / 2, 34).find((e) => !e.closest('header'));
+        setDark(!!el?.closest('[data-dark]'));
+      });
+    };
     f();
     window.addEventListener('scroll', f, { passive: true });
     return () => window.removeEventListener('scroll', f);
@@ -38,7 +47,7 @@ export function Header() {
       <header
         className={cn(
           'fixed inset-x-0 top-0 z-50 transition-[background,box-shadow,backdrop-filter,color,height] duration-500',
-          solid ? 'h-[64px] bg-milk/80 text-ink shadow-[0_1px_0_rgb(16_48_46/.08)] backdrop-blur-xl' : 'h-[84px] text-[color:var(--sky-ink)]',
+          solid ? (dark ? 'h-[64px] bg-night/75 text-moon shadow-[0_1px_0_rgb(237_231_220/.08)] backdrop-blur-xl' : 'h-[64px] bg-milk/80 text-ink shadow-[0_1px_0_rgb(16_48_46/.08)] backdrop-blur-xl') : 'h-[84px] text-[color:var(--sky-ink)]',
         )}
       >
         <div className="mx-auto flex h-full max-w-[1440px] items-center gap-4 px-5 md:px-12">

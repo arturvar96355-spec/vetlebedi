@@ -1,7 +1,7 @@
 'use client';
 
-import { motion, useReducedMotion } from 'motion/react';
-import type { ReactNode } from 'react';
+import { motion, useInView, useReducedMotion } from 'motion/react';
+import { useRef, type ReactNode } from 'react';
 
 export const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -49,26 +49,26 @@ export function SplitHeading({
   immediate?: boolean;
 }) {
   const reduce = useReducedMotion();
+  const ref = useRef<HTMLHeadingElement>(null);
+  const seen = useInView(ref, { once: true, amount: 0.35 });
+  const shown = immediate || seen;
   const words = text.split(/\s+/);
-  const M = motion.span;
   return (
-    <Tag className={className} aria-label={text.replace(/\*/g, '')}>
+    <Tag ref={ref as never} className={className} aria-label={text.replace(/\*/g, '')}>
       {words.map((w, i) => {
         const em = w.startsWith('*') || w.endsWith('*');
         const clean = w.replace(/\*/g, '');
         return (
           <span key={i} aria-hidden className="inline-block overflow-hidden pb-[0.12em] align-top">
-            <M
+            <motion.span
               className={`inline-block ${em ? 'italic' : ''}`}
               initial={reduce ? false : { y: '112%' }}
-              {...(immediate
-                ? { animate: { y: 0 } }
-                : { whileInView: { y: 0 }, viewport: { once: true, amount: 0.6 } })}
+              animate={{ y: shown ? 0 : '112%' }}
               transition={{ duration: 0.95, ease: EASE, delay: delay + i * 0.055 }}
             >
               {clean}
-            </M>
-            {i < words.length - 1 ? ' ' : ''}
+            </motion.span>
+            {i < words.length - 1 ? '\u00A0' : ''}
           </span>
         );
       })}

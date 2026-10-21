@@ -46,7 +46,7 @@ export const clinics: Clinic[] = [
     routeUrl: '',
     rating: 4.8,
     ratings: 1547,
-    pin: { x: 29, y: 60 },
+    pin: { x: 30, y: 62 },
   },
   {
     id: 'vidnoe',
