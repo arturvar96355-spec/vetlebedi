@@ -1,0 +1,146 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/cormorant/wght.css';
+@import '@fontsource-variable/cormorant/wght-italic.css';
+@import '@fontsource-variable/onest/wght.css';
+
+@theme {
+  --color-milk: #f6f2ea;
+  --color-milk-2: #fbf8f2;
+  --color-ink: #10302e;
+  --color-ink-soft: #3c5a57;
+  --color-lake: #1f5a55;
+  --color-lake-deep: #163f3c;
+  --color-reed: #8fb3a5;
+  --color-reed-pale: #cfe0d7;
+  --color-sand: #e6dccb;
+  --color-alert: #c2412d;
+  --color-night: #0e2624;
+  --color-night-2: #143633;
+  --color-moon: #ede7dc;
+  --color-aqua: #4fd1c5;
+
+  --font-display: 'Cormorant Variable', 'Cormorant', Georgia, serif;
+  --font-sans: 'Onest Variable', 'Onest', system-ui, sans-serif;
+
+  --radius-card: 28px;
+  --radius-field: 16px;
+
+  --shadow-soft: 0 24px 60px -24px rgb(16 48 46 / 0.28);
+  --shadow-lift: 0 30px 70px -26px rgb(16 48 46 / 0.4);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --header-h: 76px;
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: auto;
+  -webkit-text-size-adjust: 100%;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background: var(--color-milk);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  text-wrap: pretty;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.tnum { font-variant-numeric: tabular-nums; }
+
+::selection { background: var(--color-reed-pale); color: var(--color-ink); }
+
+:focus-visible {
+  outline: 2px solid var(--color-lake);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.on-dark :focus-visible, [data-dark] :focus-visible { outline-color: var(--color-aqua); }
+
+.skip-link {
+  position: fixed; left: 12px; top: -60px; z-index: 100;
+  background: var(--color-ink); color: var(--color-milk);
+  padding: 10px 16px; border-radius: 999px; transition: top .2s;
+}
+.skip-link:focus { top: 12px; }
+
+/* Слой зерна: один на страницу */
+.grain::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .05; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ───── Небо день/ночь (data-sky на <html>) ───── */
+html { --sky-bg: #f6f2ea; --sky-ink: #10302e; --sky-soft: #3c5a57; --sky-line: #1f5a55; }
+html[data-sky='night'] { --sky-bg: #0e2624; --sky-ink: #ede7dc; --sky-soft: #b9c9c1; --sky-line: #cfe0d7; }
+
+.sky-day, .sky-night { transition: opacity 1.2s var(--ease-out-soft); }
+.sky-night { opacity: 0; }
+html[data-sky='night'] .sky-night { opacity: 1; }
+html[data-sky='night'] .sky-day { opacity: 0; }
+
+/* ───── Лебедь: рисуется линией ───── */
+.swan path, .swan circle { vector-effect: non-scaling-stroke; }
+.swan .draw {
+  stroke-dasharray: 1; stroke-dashoffset: 1;
+  animation: draw 1.6s var(--ease-out-soft) forwards;
+  animation-delay: calc(var(--i, 0) * 120ms + var(--d, 0ms));
+}
+.swan .eye { opacity: 0; animation: fade .6s ease forwards; animation-delay: calc(var(--d, 0ms) + 1.3s); }
+.swan-breathe { transform-origin: 50% 80%; animation: breathe 6s ease-in-out 2.2s infinite; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes fade { to { opacity: 1; } }
+@keyframes breathe { 0%,100% { transform: scale(1) translateY(0);} 50% { transform: scale(1.012) translateY(-4px);} }
+
+/* Вода */
+.water-flow { animation: flow var(--dur, 22s) linear infinite; }
+@keyframes flow { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* Звёзды */
+.star { animation: twinkle var(--t, 4s) ease-in-out var(--dl, 0s) infinite; }
+@keyframes twinkle { 0%,100% { opacity: .25; } 50% { opacity: 1; } }
+
+/* Заглушки для данных клиента */
+.ph {
+  display: inline-block; padding: 1px 8px; border: 1.5px dashed color-mix(in srgb, currentColor 45%, transparent);
+  border-radius: 8px; color: color-mix(in srgb, currentColor 65%, transparent);
+  font-size: .9em; line-height: 1.5; background: color-mix(in srgb, currentColor 5%, transparent);
+}
+
+.marquee { display: flex; width: max-content; animation: marquee var(--dur, 40s) linear infinite; }
+.marquee:hover { animation-play-state: paused; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .swan .draw { animation: none; stroke-dashoffset: 0; }
+  .swan .eye { animation: none; opacity: 1; }
+  .swan-breathe, .water-flow, .star, .marquee { animation: none !important; }
+  .sky-day, .sky-night { transition: none; }
+}
